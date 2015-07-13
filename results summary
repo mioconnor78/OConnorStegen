@@ -1,0 +1,81 @@
+OConnor and Stegen results summary:
+
+> anova(NPP1, NPP2)
+Data: [
+Data: data
+Data: (data$Week > "2")
+Data: 
+Models:
+NPP2: logNPP ~ I(invT - mean(invT)) + (1 | Week)
+NPP1: logNPP ~ I(invT - mean(invT)) + (1 + I(invT - mean(invT)) | Week)
+     Df     AIC     BIC logLik deviance  Chisq Chi Df Pr(>Chisq)
+NPP2  4 -361.80 -349.03 184.90  -369.80                         
+NPP1  6 -361.73 -342.57 186.86  -373.73 3.9261      2     0.1404
+
+> summary(NPP2)
+Linear mixed model fit by maximum likelihood  ['lmerMod']
+Formula: logNPP ~ I(invT - mean(invT)) + (1 | Week)
+   Data: data[(data$Week > "2"), ]
+
+     AIC      BIC   logLik deviance df.resid 
+  -361.8   -349.0    184.9   -369.8      176 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-4.2917 -0.4650  0.0297  0.5595  3.1602 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ Week     (Intercept) 0.002311 0.04807 
+ Residual             0.006927 0.08323 
+Number of obs: 180, groups:  Week, 6
+
+Fixed effects:
+                     Estimate Std. Error t value
+(Intercept)          -1.89165    0.02059  -91.88
+I(invT - mean(invT)) -0.19854    0.01520  -13.06
+
+Correlation of Fixed Effects:
+            (Intr)
+I(nvT-m(T)) -0.019
+
+> summary(ER2)
+Linear mixed model fit by maximum likelihood  ['lmerMod']
+Formula: logER ~ I(invT - mean(invT)) + (1 | Week)
+   Data: data[(data$Week > "2"), ]
+
+     AIC      BIC   logLik deviance df.resid 
+  -104.9    -91.5     56.4   -112.9      206 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-9.0645 -0.3071  0.0261  0.3896  1.9545 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ Week     (Intercept) 0.01434  0.1198  
+ Residual             0.03127  0.1768  
+Number of obs: 210, groups:  Week, 7
+
+Fixed effects:
+                     Estimate Std. Error t value
+(Intercept)          -1.73226    0.04688  -36.95
+I(invT - mean(invT)) -0.29257    0.03059   -9.56
+
+Correlation of Fixed Effects:
+            (Intr)
+I(nvT-m(T)) 0.000 
+> confint(NPP2)
+Computing profile confidence intervals ...
+                           2.5 %      97.5 %
+.sig01                0.02727957  0.10004597
+.sigma                0.07519537  0.09280451
+(Intercept)          -1.93940979 -1.84384727
+I(invT - mean(invT)) -0.22854215 -0.16848495
+> confint(ER2)
+Computing profile confidence intervals ...
+                          2.5 %     97.5 %
+.sig01                0.0724830  0.2314946
+.sigma                0.1609346  0.1955364
+(Intercept)          -1.8383223 -1.6262014
+I(invT - mean(invT)) -0.3528345 -0.2323348

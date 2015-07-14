@@ -5,6 +5,7 @@
 library(plyr)
 library(reshape2)
 
+k <- 8.62*10^-5
 data = read.csv("./OConnorStegendata.csv")
 head(data)
 

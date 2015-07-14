@@ -2,6 +2,7 @@
 
 
 library(lme4)
+library(MuMIn)
 data <- data2
 
 #### analysis of NPP and ER
@@ -17,11 +18,12 @@ plot(logNPP~TempO2NPP, data = data[(data$Week > '2'),])
 NPP1 <- lmer(logNPP~I(invT - mean(invT))  + (1 + I(invT - mean(invT)) | Week), REML = FALSE, data=data[(data$Week > '2'),], na.action=na.omit)
 NPP2 <- lmer(logNPP~I(invT - mean(invT))  + (1 | Week), REML = FALSE, data=data[(data$Week > '2'),], na.action=na.omit)
 anova(NPP1, NPP2)
+model.sel(NPP1, NPP2)
 summary(NPP2)
 
 # analysis of ER
 ER1 <- lmer(logER~I(invT - mean(invT))  + (1 + I(invT - mean(invT)) | Week), REML = FALSE, data=data[(data$Week > '2'),], na.action=na.omit)
 ER2 <- lmer(logER~I(invT - mean(invT))  + (1 | Week), REML = FALSE, data=data[(data$Week > '2'),], na.action=na.omit)
 anova(ER1, ER2)
-
+model.sel(ER1, ER2)
 summary(ER2)

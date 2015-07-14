@@ -12,6 +12,27 @@ NPP1: logNPP ~ I(invT - mean(invT)) + (1 + I(invT - mean(invT)) | Week)
 NPP2  4 -361.80 -349.03 184.90  -369.80                         
 NPP1  6 -361.73 -342.57 186.86  -373.73 3.9261      2     0.1404
 
+> anova(ER1, ER2)
+Data: data[(data$Week > "2"), ]
+Models:
+ER2: logER ~ I(invT - mean(invT)) + (1 | Week)
+ER1: logER ~ I(invT - mean(invT)) + (1 + I(invT - mean(invT)) | Week)
+    Df     AIC     BIC logLik deviance  Chisq Chi Df Pr(>Chisq)  
+ER2  4 -104.87 -91.481 56.435  -112.87                           
+ER1  6 -106.30 -86.217 59.150  -118.30 5.4307      2    0.06618 .
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+> model.sel(ER1, ER2)
+Model selection table 
+     (Int) inT-men(inT)        random df logLik   AICc delta weight
+ER1 -1.739      -0.3008 1+I(i-m(i))|W  6 59.150 -105.9  0.00  0.647
+ER2 -1.732      -0.3053             W  4 56.435 -104.7  1.21  0.353
+Models ranked by AICc(x) 
+Random terms: 
+1+I(i-m(i))|W = ‘1 + I(invT - mean(invT)) | Week’
+W = ‘1 | Week’
+
+
 > summary(NPP2)
 Linear mixed model fit by maximum likelihood  ['lmerMod']
 Formula: logNPP ~ I(invT - mean(invT)) + (1 | Week)
@@ -65,6 +86,8 @@ I(invT - mean(invT)) -0.29257    0.03059   -9.56
 Correlation of Fixed Effects:
             (Intr)
 I(nvT-m(T)) 0.000 
+
+
 > confint(NPP2)
 Computing profile confidence intervals ...
                            2.5 %      97.5 %

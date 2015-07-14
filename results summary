@@ -32,6 +32,16 @@ Random terms:
 1+I(i-m(i))|W = ‘1 + I(invT - mean(invT)) | Week’
 W = ‘1 | Week’
 
+> model.sel(Chla1, Chla2)
+Model selection table 
+      (Int) inT-men(inT)        random df   logLik  AICc delta weight
+Chla1 2.360       0.2733 1+I(i-m(i))|W  6 -297.125 606.7  0.00  0.549
+Chla2 2.354       0.3498             W  4 -299.431 607.1  0.39  0.451
+Models ranked by AICc(x) 
+Random terms: 
+1+I(i-m(i))|W = ‘1 + I(invT - mean(invT)) | Week’
+W = ‘1 | Week’
+
 
 > summary(NPP2)
 Linear mixed model fit by maximum likelihood  ['lmerMod']

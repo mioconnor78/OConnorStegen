@@ -38,6 +38,7 @@ oxygen2$TempO2ER <- (oxygen2$TempC.d2 + oxygen2$TempC.dsk)/2
 
 head(oxygen2)
 head(data)
+tail(oxygen2)
 
 fluxes <- oxygen2[,-(3:20)]
 data <- data[,-(3:5)]
@@ -47,7 +48,9 @@ data2 <- data2[,-(4:6)]
 data2$logNPP <- log(data2$NPP + 0.1)
 data2$logER <- log(data2$ER + 0.1)
 data2$invT <- 1/(k*(data2$TempO2NPP+273))
+data2$logChla <- ifelse(data2$chla.ugL > '0', log(data2$chla.ugL), NA)
 
-  
+hist(data2$chla.ugL)
+
   
                

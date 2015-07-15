@@ -52,5 +52,9 @@ data2$logChla <- ifelse(data2$chla.ugL > '0', log(data2$chla.ugL), NA)
 
 hist(data2$chla.ugL)
 
+# total microalgae
+# 55 mg C / mg Chla (Gasol et al 1997)
+data2$tot.alg <- data2$chla.ugL*0.001*55 + data2$peri.mg*0.25
+
   
                

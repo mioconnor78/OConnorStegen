@@ -5,7 +5,7 @@ library(lme4)
 library(MuMIn)
 data <- data2
 
-#### analysis of NPP and ER
+#### analysis of NPP and ER all weeks
 
 ## basic plotting to examine patterns
 hist(data$NPP)
@@ -41,3 +41,5 @@ confint(Chla2)
 
 # backswimmers
 plot((3-backswimmers) ~ TempO2NPP, main = 'Number of dead or missing Notonectids', data=data[(data$Week > '2'),])
+
+

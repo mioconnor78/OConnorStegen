@@ -54,7 +54,7 @@ hist(data2$chla.ugL)
 
 # total microalgae
 # 55 mg C / mg Chla (Gasol et al 1997)
-data2$tot.alg <- data2$chla.ugL*0.001*55 + data2$peri.mg*0.25
+data2$tot.alg <- data2$chla.ugL*0.001*55 + data2$peri.mg*0.25 + as.numeric(data2$floating.wet.wt.g)*0.25
 
   
                

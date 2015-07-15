@@ -27,5 +27,10 @@ summary(peri9)
 tot.alg9 <- lm(log(tot.alg)~invT, data = data)
 summary(tot.alg9)
 
+confint(tot.alg9)
 
+NPP.alg9 <- lm((logNPP/log(tot.alg)) ~ invT, data = data)
+summary(NPP.alg9)
+
+# so fluxes go up w/ warming, biomass also went up, and mass specific fluxes also went up. community shifts explain some of the change in ecosystem function, but not all of it. (how do grazers fit in?)
 

@@ -56,5 +56,16 @@ hist(data2$chla.ugL)
 # 55 mg C / mg Chla (Gasol et al 1997)
 data2$tot.alg <- data2$chla.ugL*0.001*55 + data2$peri.mg*0.25 + as.numeric(data2$floating.wet.wt.g)*0.25
 
-  
-               
+
+# data summary
+NPPtab <- ddply(data2, .(Week), summarise, length(unique(NPP)))
+ERtab <- ddply(data2, .(Week), summarise, length(unique(ER)))  
+Chlatab <- ddply(data2, .(Week), summarise, length(unique(chla.ugL))) 
+peri.mg.tab <- ddply(data2, .(Week), summarise, length(unique(peri.mg)))
+floating.wet.wt <- ddply(data2, .(Week), summarise, length(unique(floating.wet.wt.g)))
+backswimmers <- ddply(data2, .(NPP, ER, chla.ugL), summarise, length(unique(backswimmers)))
+PO4.uM <- ddply(data2, .(NPP, ER, chla.ugL), summarise, length(unique(PO4.uM)))
+NO3.uM <- ddply(data2, .(NPP, ER, chla.ugL), summarise, length(unique(NO3.uM)))
+ZP.N <- ddply(data2, .(NPP, ER, chla.ugL), summarise, length(unique(ZP.N)))
+
+sum.tab <-cbind(NPPtab, ERtab, Chlatab, peri.mg.tab, floating.wet.wt, backswimmers, PO4.uM, NO3.uM, ZP.N)
